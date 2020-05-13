@@ -1,0 +1,26 @@
+<!-- views/contacts/index.ejs-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+</head>
+<body>
+    <%- include('../partials/nav') %> 
+
+    <div class = "contact contact-index">
+        <h2>Index</h2>
+        <ul>
+            <% contacts.forEach(function(contact) { %> 
+                <li>
+                    <%= contact.name %> 
+                </li>
+            <% }) %> 
+        </ul>
+    </div>
+</body>
+</html>
+
+<!-- <%- include %> 를 사용해서 외부 ejs(head와 nav)를 가져온다.
+    contacts object에 forEach를 사용해서 코드를 반복해서 표시하고 있다. -->
+

@@ -133,9 +133,12 @@ app.get('/contacts/new', (req, res)=>{
 app.post('/contacts', (req, res)=>{
     //'/contacts'에 post요청이 오는 경우 : '/contacts/new' 에서 폼을 전달받는 경우이다.
     Contact.create(req.body, (err, contact)=>{
-        //모델.create는 DB에 data를 생성하는 함수. 첫 번째 parameter
+        //모델.create는 DB에 data를 생성하는 함수. 첫 번째 parameter로 error를 받고 
+        //두번째 parameter로 콜백 함수를 받습니다. 생성된 data는 항상 하나이므로
+        //parameter이름으로 단수형인 contact를 사용
         if(err) return res.json(err);
         res.redirect('/contacts');
+        //에러없이 contact data가 생서되면 /contact로 redirect한다.
     });
 });
 
