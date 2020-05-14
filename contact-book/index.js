@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+
 /*
 //index.js
 
@@ -148,7 +148,7 @@ let port = 3000;
 app.listen(port, () => {
     console.log('Server on! http://localhost:' + port);
 });
-*/
+
 
 // index.js 3
 const express = require('express');
@@ -272,3 +272,51 @@ const port = 3000;
 app.listen(port, () => {
     console.log(`Server on! http://localhost:${port}`);
 });
+*/
+
+// index.js 4
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+
+const app = express();
+
+// DB setting
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(process.env.MONGO_DB);
+
+const db = mongoose.connection;
+db.once('open', () => {
+    console.log('DB connected');
+});
+db.on('error', (err) => {
+    console.log(`DB ERROR : ${err}`);
+});
+
+// Other settings
+app.set('view engine', 'ejs');
+app.use(express.static(`${__dirname}/public`));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+
+// Routes
+app.use('/', require('./routes/home'));
+app.use('/contacts', require('./routes/contacts'));
+
+// Port setting
+const port = 3000;
+app.listen(port, () => {
+    console.log(`server on! http://localhost:${port}`);
+});
+
+// DB schema, routes 부분의 코드가 없어지고 routes에는 app.use가 추가되었습니다.
+// 분리된 routes는 index.js의 app.use 안에서 직접 require를 하고 있고 
+// DB schema는 route안에서만 사용되기 때문에 index.js에서는 require를 하지 않고,
+// 해당 route안에서 require됩니다.
+// app.use('route', 콜백_함수) 는 해당 route의 요청이 오는 경우에만 콜백 함수를 호출합니다.
