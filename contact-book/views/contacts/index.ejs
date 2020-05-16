@@ -8,11 +8,11 @@
 <body>
     <%- include('../partials/nav') %> 
 
-    <div class = "contact contact-index">
+    <div class = "container contact contact-index">
         <h2>Index</h2>
-        <ul>
+        <ul class = "list-group">
             <% contacts.forEach(function(contact) { %> 
-                <li>
+                <li class = "list-group-item">
                     <a href="/contacts/<%= contact._id %>"><%= contact.name %> </a>
                     <!-- 이름에 a tag를 추가하여 show action과 연결한다.-->
                 </li>
@@ -23,5 +23,8 @@
 </html>
 
 <!-- <%- include %> 를 사용해서 외부 ejs(head와 nav)를 가져온다.
-    contacts object에 forEach를 사용해서 코드를 반복해서 표시하고 있다. -->
+    contacts object에 forEach를 사용해서 코드를 반복해서 표시하고 있다.
+
+    기존 코드에서 container, list-group, list-group-item class 등의 bootstrap class가 추가되었다.
+-->
 

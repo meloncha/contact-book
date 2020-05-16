@@ -6,26 +6,25 @@
     <%- include('../partials/head') %>
 </head>
 <body>
-    <%- include('../partials/new') %> 
+    <%- include('../partials/nav') %> 
 
-    <div class="contact contact-edit">
+    <div class="container contact contact-edit">
         <h2>Edit</h2>
-        <form class ="contact-form" action="/contacts/<%= contact._id %>
-            ?_method=put" method = "post">
-            <div>
+        <form class ="contact-form" action="/contacts/<%= contact._id %>?_method=put" method = "post">
+            <div class = "form-group">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="<%= contact.name %>">
+                <input type="text" id="name" name="name" value="<%= contact.name %>" class = "form-control">
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="email">Edit</label>
-                <input type="text" id="email" name="email" value="<%= contact.email %>">
+                <input type="text" id="email" name="email" value="<%= contact.email %>" class = "form-control">
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="phone">Phone</label>
-                <input type="text" id="phone" name="phone" value="<%= contact.phone %>">
+                <input type="text" id="phone" name="phone" value="<%= contact.phone %>" class = "form-control">
             </div>
             <div>
-                <button type = "submit">Submit</button>
+                <button type = "submit" class = "btn btn-primary">Submit</button>
             </div>
         </form>
     </div>
@@ -33,4 +32,7 @@
 </html>
 
 <!-- edit.ejs는 new.ejs와 거의 같지만 form에 해당 data의 값들이 미리 들어 있고
-form action이 다르다. put 역시 form에서 사용할 수 없으므로 _method=put을 사용-->
+form action이 다르다. put 역시 form에서 사용할 수 없으므로 _method=put을 사용
+
+    container, btn btn-primary, form-group, form-control 등의 bootstrap class 추가
+-->

@@ -8,16 +8,18 @@
 <body>
     <%- include('../partials/nav') %> 
 
-    <div class = "contact contact-show">
+    <div class = "container contact contact-show">
         <h2>Show</h2>
-        <div>
-            <h3><%= contact.name %></h3>
-            <label>Email</label><span><%= contact.email %> </span>
-            <br>
-            <label>Phone</label><span><%= contact.phone %> </span>
+        <div class = "card" >
+            <div class = "card-body">
+                <h3><%= contact.name %></h3>
+                <label>Email</label><span><%= contact.email %> </span>
+                <br>
+                <label>Phone</label><span><%= contact.phone %> </span>
+            </div>
         </div>
-        <div class = "contact-menu">
-            <a href="/contacts/<%= contact._id %>/edit">Edit</a>
+        <div class = "contact-menu mt-2">
+            <a href="/contacts/<%= contact._id %>/edit" class = "btn btn-light mr-2">Edit</a>
             <form action="/contacts/<%= contact._id %>?_method=delete" method = "post">
                 <a href="#" onclick="confirm('Do you want to delete this?')
                 ?this.parentElement.submit():null;">Delete</a>
@@ -33,4 +35,7 @@ form에서도 post밖에 요청할 수 없기 때문에 ?_method=delete이 actio
 이 부분은 서버의 method override package에 의해 처리되어 delete 요청으로 변경됩니다.
 
 Delete를 눌렀을 때 onclick을 사용해서 confirm을 띄우고 yes인 경우 form을 submit하게 합니다.
+
+    container, btn, btn-light class 등의 bootstrap class가 추가되고,
+    bootstrap card가 적용
 -->

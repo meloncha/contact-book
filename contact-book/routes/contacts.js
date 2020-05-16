@@ -34,11 +34,11 @@ router.get('/:id', (req, res) => {
 });
 
 // edit
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', (req,res) => {
     Contact.findOne({_id: req.params.id}, (err, contact) => {
         if (err) return res.json(err);
-        res.redirect(`/contacts/${req.paramss.id}`);
-    }); 
+        res.render('contacts/edit', {contact});
+    });
 });
 
 // update
@@ -46,6 +46,14 @@ router.put('/:id', (req, res) => {
     Contact.findOneAndUpdate({_id: req.params.id}, req.body, (err, contact) => {
         if (err) return res.json(err);
         res.redirect(`/contacts/${req.params.id}`);
+    });
+});
+
+// destroy
+router.delete('/:id', (req, res) => {
+    Contact.deleteOne({_id: req.params.id}, (err) => {
+        if (err) return res.json(err);
+        res.redirect('/contacts');
     });
 });
 
